@@ -6,6 +6,11 @@ from app.config import settings
 from app.database import Base
 import app.models  # noqa: F401 — ensures all models are registered
 
+db_url = settings.database_url
+if db_url.startswith("postgresql://"):
+    db_url = db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+engine = create_async_engine(db_url, echo=False)
+
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.database_url)
 
