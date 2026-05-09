@@ -2,24 +2,48 @@
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 .venv/
 venv/
+env/
 *.egg-info/
+.pytest_cache/
 
-# Env files
+# Environment / secrets — never commit real keys
 .env
+.env.*
+!.env.example
 backend/.env
+backend/.env.*
+!backend/.env.example
 
-# Uploads (user data, not source)
+# Uploads (user data — photos, mockups)
 backend/uploads/
+uploads/
 
 # Node
 node_modules/
 frontend/dist/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Database dumps
+*.sql
+*.dump
+
+# Certificates / keys
+*.pem
+*.key
+*.p12
+*.pfx
 
 # OS
 .DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
