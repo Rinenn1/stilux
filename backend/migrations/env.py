@@ -33,7 +33,7 @@ def run_migrations_offline():
 
 
 async def run_migrations_online():
-    engine = create_async_engine(settings.database_url)
+    engine = create_async_engine(db_url)
     async with engine.connect() as connection:
         await connection.run_sync(
             lambda conn: context.configure(connection=conn, target_metadata=target_metadata)
