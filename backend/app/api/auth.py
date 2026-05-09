@@ -74,7 +74,7 @@ async def callback(code: str, response: Response):
 
     session_token = create_session_token(email)
     redirect = RedirectResponse(url=settings.frontend_url)
-    redirect.set_cookie("session", session_token, httponly=True, samesite="lax", max_age=30 * 86400)
+    redirect.set_cookie("session", session_token, httponly=True, samesite="none", secure=True, max_age=30 * 86400)
     return redirect
 
 
