@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0a1016"/><stop offset=".65" stop-color="#121a22"/><stop offset="1" stop-color="#1b1510"/></linearGradient>
+    <linearGradient id="line" x1="0" x2="1"><stop offset="0" stop-color="#56d7ba"/><stop offset="1" stop-color="#e4b76b"/></linearGradient>
+  </defs>
+  <rect width="1440" height="900" fill="url(#bg)"/>
+  <rect x="62" y="48" width="1316" height="804" rx="32" fill="#111922" stroke="#2a3540"/>
+  <text x="104" y="108" fill="#f4f0ea" font-family="Inter, Arial" font-size="32" font-weight="850">Profile and fit base</text>
+  <text x="104" y="139" fill="#8e9aa6" font-family="Inter, Arial" font-size="15">A clearer, more private setup screen for body photo and preferences.</text>
+  <rect x="104" y="190" width="424" height="604" rx="30" fill="#151f28" stroke="#2d3a45"/>
+  <rect x="146" y="235" width="340" height="420" rx="28" fill="#d8d4c8"/>
+  <ellipse cx="316" cy="326" rx="52" ry="58" fill="#8a6b51"/>
+  <rect x="266" y="374" width="100" height="172" rx="42" fill="#263744"/>
+  <rect x="244" y="514" width="54" height="114" rx="22" fill="#2e3338"/>
+  <rect x="334" y="514" width="54" height="114" rx="22" fill="#2e3338"/>
+  <path d="M176 693 H456" stroke="#293541"/>
+  <text x="146" y="715" fill="#f2eee8" font-family="Inter, Arial" font-size="17" font-weight="800">Body photo ready</text>
+  <text x="146" y="743" fill="#8e9aa6" font-family="Inter, Arial" font-size="14">Used only for outfit mockups</text>
+  <rect x="344" y="703" width="112" height="36" rx="13" fill="#20303a"/>
+  <text x="378" y="727" fill="#d9e4e8" font-family="Inter, Arial" font-size="13" font-weight="800">Replace</text>
+  <rect x="572" y="190" width="764" height="146" rx="28" fill="#151f28" stroke="#2d3a45"/>
+  <text x="608" y="230" fill="#f2eee8" font-family="Inter, Arial" font-size="19" font-weight="850">Style preferences</text>
+  <text x="608" y="260" fill="#8e9aa6" font-family="Inter, Arial" font-size="14">These steer suggestions before the model starts guessing.</text>
+  <rect x="608" y="286" width="112" height="34" rx="12" fill="#18352f"/><text x="635" y="308" fill="#dffcf5" font-family="Inter, Arial" font-size="13" font-weight="800">Minimal</text>
+  <rect x="732" y="286" width="150" height="34" rx="12" fill="#202a34"/><text x="760" y="308" fill="#aab6c0" font-family="Inter, Arial" font-size="13">Smart casual</text>
+  <rect x="894" y="286" width="122" height="34" rx="12" fill="#202a34"/><text x="926" y="308" fill="#aab6c0" font-family="Inter, Arial" font-size="13">Neutral</text>
+  <rect x="572" y="368" width="360" height="198" rx="28" fill="#101820" stroke="#2d3a45"/>
+  <text x="608" y="410" fill="#f2eee8" font-family="Inter, Arial" font-size="18" font-weight="850">Fit notes</text>
+  <text x="608" y="447" fill="#b8c3ca" font-family="Inter, Arial" font-size="14">Prefers relaxed shoulders</text>
+  <rect x="608" y="468" width="264" height="8" rx="4" fill="#25323d"/><rect x="608" y="468" width="188" height="8" rx="4" fill="url(#line)"/>
+  <text x="608" y="507" fill="#b8c3ca" font-family="Inter, Arial" font-size="14">Avoids tight waistbands</text>
+  <rect x="608" y="528" width="264" height="8" rx="4" fill="#25323d"/><rect x="608" y="528" width="220" height="8" rx="4" fill="url(#line)"/>
+  <rect x="976" y="368" width="360" height="198" rx="28" fill="#101820" stroke="#2d3a45"/>
+  <text x="1012" y="410" fill="#f2eee8" font-family="Inter, Arial" font-size="18" font-weight="850">Color comfort</text>
+  <circle cx="1040" cy="462" r="22" fill="#f3eee3"/><circle cx="1098" cy="462" r="22" fill="#22272d"/><circle cx="1156" cy="462" r="22" fill="#537182"/><circle cx="1214" cy="462" r="22" fill="#b78a4e"/>
+  <text x="1012" y="517" fill="#8e9aa6" font-family="Inter, Arial" font-size="14">High confidence palette from wardrobe</text>
+  <rect x="572" y="598" width="764" height="196" rx="28" fill="#151f28" stroke="#2d3a45"/>
+  <text x="608" y="640" fill="#f2eee8" font-family="Inter, Arial" font-size="18" font-weight="850">Privacy controls</text>
+  <g font-family="Inter, Arial">
+    <rect x="608" y="672" width="296" height="82" rx="20" fill="#101820" stroke="#2d3a45"/>
+    <text x="632" y="704" fill="#dce5ea" font-size="15" font-weight="800">Mockups</text>
+    <text x="632" y="730" fill="#81909c" font-size="13">Use body photo for try-ons</text>
+    <rect x="832" y="696" width="42" height="24" rx="12" fill="#45d5b6"/><circle cx="862" cy="708" r="9" fill="#06120f"/>
+    <rect x="928" y="672" width="296" height="82" rx="20" fill="#101820" stroke="#2d3a45"/>
+    <text x="952" y="704" fill="#dce5ea" font-size="15" font-weight="800">Local storage</text>
+    <text x="952" y="730" fill="#81909c" font-size="13">Images stay on your server</text>
+    <rect x="1152" y="696" width="42" height="24" rx="12" fill="#45d5b6"/><circle cx="1182" cy="708" r="9" fill="#06120f"/>
+  </g>
+</svg>

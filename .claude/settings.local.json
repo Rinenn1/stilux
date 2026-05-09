@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wsl -d Ubuntu -- bash -c \"cd /home/rinenn/CODE/ai-adviser && docker compose build backend frontend && docker compose up -d backend frontend\")"
+    ]
+  }
+}

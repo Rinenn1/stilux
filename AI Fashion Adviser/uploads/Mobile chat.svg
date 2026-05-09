@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1440" viewBox="0 0 900 1440">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0b1118"></stop><stop offset="1" stop-color="#17130f"></stop></linearGradient>
+    <linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#4bd8b8"></stop><stop offset="1" stop-color="#ddb46b"></stop></linearGradient>
+    <filter id="s"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000" flood-opacity=".30"></feDropShadow></filter>
+  </defs>
+  <rect width="900" height="1440" fill="url(#bg)"></rect>
+  <rect x="58" y="34" width="784" height="1372" rx="68" fill="#0a0f15" stroke="#303943" stroke-width="8"></rect>
+  <rect x="86" y="74" width="728" height="1292" rx="44" fill="#111922"></rect>
+  <rect x="86" y="74" width="728" height="118" rx="44" fill="#0d141b"></rect>
+  <text x="128" y="145" fill="#f4f0ea" font-family="Inter, Arial" font-size="34" font-weight="850">FashionAI</text>
+  <circle cx="755" cy="132" r="22" fill="#1e2a33"></circle>
+  <path d="M744 132 h22 M755 121 v22" stroke="#4bd8b8" stroke-width="5" stroke-linecap="round"></path>
+  <text x="128" y="245" fill="#8e9aa6" font-family="Inter, Arial" font-size="22">Tonight&#39;s adviser</text>
+  <rect x="128" y="284" width="530" height="112" rx="32" fill="#1a242d" stroke="#2d3944"></rect>
+  <text x="162" y="330" fill="#edf3ef" font-family="Inter, Arial" font-size="24">Casual dinner tonight?</text>
+  <text x="162" y="364" fill="#768590" font-family="Inter, Arial" font-size="18">Use my wardrobe, avoid repeats</text>
+  <rect x="190" y="430" width="584" height="158" rx="34" fill="#101820" stroke="#2d3944"></rect>
+  <text x="226" y="482" fill="#f3eee8" font-family="Inter, Arial" font-size="24" font-weight="850">Yes. I found 3 strong looks.</text>
+  <text x="226" y="524" fill="#b7c2ca" font-family="Inter, Arial" font-size="21">Start with the ivory knit and</text>
+  <text x="226" y="556" fill="#b7c2ca" font-family="Inter, Arial" font-size="21">charcoal trouser.</text>
+  <rect x="128" y="630" width="646" height="430" rx="38" fill="#151f28" stroke="#2d3944" filter="url(#s)"></rect>
+  <rect x="166" y="670" width="208" height="272" rx="30" fill="#d8d4ca"></rect>
+  <ellipse cx="270" cy="756" rx="40" ry="44" fill="#8a6b51"></ellipse>
+  <rect x="230" y="796" width="80" height="104" rx="30" fill="#f4eee5"></rect>
+  <rect x="212" y="875" width="42" height="64" rx="17" fill="#282d32"></rect>
+  <rect x="286" y="875" width="42" height="64" rx="17" fill="#282d32"></rect>
+  <text x="410" y="694" fill="#4bd8b8" font-family="Inter, Arial" font-size="17" font-weight="900" letter-spacing="1.4">LOOK 01</text>
+  <text x="410" y="743" fill="#f4f0ea" font-family="Inter, Arial" font-size="29" font-weight="850">Quiet dinner polish</text>
+  <text x="410" y="793" fill="#b7c2ca" font-family="Inter, Arial" font-size="20">Balanced, warm,</text>
+  <text x="410" y="824" fill="#b7c2ca" font-family="Inter, Arial" font-size="20">not overdressed.</text>
+  <rect x="410" y="875" width="222" height="58" rx="19" fill="url(#a)"></rect>
+  <text x="467" y="912" fill="#06120f" font-family="Inter, Arial" font-size="19" font-weight="900">Wear this</text>
+  <rect x="128" y="1090" width="646" height="82" rx="28" fill="#0d151c" stroke="#2d3944"></rect>
+  <text x="168" y="1141" fill="#73828e" font-family="Inter, Arial" font-size="22">Ask your fashion adviser...</text>
+  <rect x="688" y="1104" width="62" height="54" rx="20" fill="#4bd8b8"></rect>
+  <path d="M710 1131 h20 M722 1119 l14 12 -14 12" fill="none" stroke="#06120f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+  <rect x="190" y="1238" width="520" height="70" rx="24" fill="#0d141b"></rect>
+  <text x="228" y="1282" fill="#8e9aa6" font-family="Inter, Arial" font-size="20">Chat</text>
+  <text x="344" y="1282" fill="#8e9aa6" font-family="Inter, Arial" font-size="20">Wardrobe</text>
+  <text x="514" y="1282" fill="#8e9aa6" font-family="Inter, Arial" font-size="20">Log</text>
+  <circle cx="238" cy="1314" r="5" fill="#4bd8b8"></circle>
+</svg>
