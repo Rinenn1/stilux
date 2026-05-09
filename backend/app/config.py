@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     upload_dir: str = "./uploads"
     max_upload_size_mb: int = 10
 
-    frontend_url: str = "http://localhost:5173"
+    frontend_url: str = "https://ai-adviser-frontend.fly.dev"
 
     class Config:
         env_file = ".env"
