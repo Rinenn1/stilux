@@ -1,6 +1,4 @@
-import base64
 import json
-from pathlib import Path
 import anthropic
 from app.config import settings
 
@@ -20,14 +18,7 @@ TAG_PROMPT = """You are a fashion expert. Analyze this clothing item photo and r
 Return ONLY valid JSON, no markdown, no explanation."""
 
 
-async def tag_wardrobe_item(file_path: str) -> dict:
-    image_data = Path(file_path).read_bytes()
-    b64 = base64.standard_b64encode(image_data).decode()
-
-    suffix = Path(file_path).suffix.lower()
-    media_type_map = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
-    media_type = media_type_map.get(suffix, "image/jpeg")
-
+async def tag_wardrobe_item(image_url: str) -> dict:
     message = await client.messages.create(
         model="claude-opus-4-7",
         max_tokens=600,
@@ -35,7 +26,7 @@ async def tag_wardrobe_item(file_path: str) -> dict:
             {
                 "role": "user",
                 "content": [
-                    {"type": "image", "source": {"type": "base64", "media_type": media_type, "data": b64}},
+                    {"type": "image", "source": {"type": "url", "url": image_url}},
                     {"type": "text", "text": TAG_PROMPT},
                 ],
             }

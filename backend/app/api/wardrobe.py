@@ -1,11 +1,7 @@
-import uuid
 import asyncio
 import logging
-from pathlib import Path
 from fastapi import APIRouter, Depends, UploadFile, File, HTTPException, Request, BackgroundTasks
-
-logger = logging.getLogger(__name__)
-from fastapi.responses import FileResponse
+from fastapi.responses import RedirectResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from pydantic import BaseModel
@@ -13,26 +9,18 @@ from app.database import get_db, AsyncSessionLocal
 from app.api.auth import get_current_user
 from app.models.wardrobe import WardrobeItem
 from app.services.tagger import tag_wardrobe_item
+from app.services import storage
 from app.config import settings
 
+logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/wardrobe", tags=["wardrobe"])
 ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp"}
 
 
-def _save_upload(file_bytes: bytes, original_name: str) -> tuple[str, str]:
-    upload_dir = Path(settings.upload_dir) / "wardrobe"
-    upload_dir.mkdir(parents=True, exist_ok=True)
-    ext = Path(original_name).suffix.lower() or ".jpg"
-    filename = f"{uuid.uuid4().hex}{ext}"
-    path = upload_dir / filename
-    path.write_bytes(file_bytes)
-    return filename, str(path)
-
-
-async def _run_tagging(item_id: int, file_path: str):
+async def _run_tagging(item_id: int, image_url: str):
     async with AsyncSessionLocal() as db:
         try:
-            tags = await tag_wardrobe_item(file_path)
+            tags = await tag_wardrobe_item(image_url)
             result = await db.execute(select(WardrobeItem).where(WardrobeItem.id == item_id))
             item = result.scalar_one_or_none()
             if item:
@@ -66,13 +54,16 @@ async def upload_item(
     if len(file_bytes) > max_bytes:
         raise HTTPException(400, f"File exceeds {settings.max_upload_size_mb}MB limit")
 
-    filename, file_path = _save_upload(file_bytes, file.filename)
-    item = WardrobeItem(filename=filename, original_name=file.filename, file_path=file_path)
+    filename, image_url = await storage.upload(
+        storage.BUCKET_WARDROBE, file.filename or "item.jpg", file_bytes, file.content_type
+    )
+
+    item = WardrobeItem(filename=filename, original_name=file.filename, file_path=image_url)
     db.add(item)
     await db.commit()
     await db.refresh(item)
 
-    background_tasks.add_task(_run_tagging, item.id, file_path)
+    background_tasks.add_task(_run_tagging, item.id, image_url)
     return {"id": item.id, "tagging_complete": False}
 
 
@@ -90,12 +81,14 @@ async def upload_bulk(
             results.append({"filename": file.filename, "error": "Invalid type"})
             continue
         file_bytes = await file.read()
-        filename, file_path = _save_upload(file_bytes, file.filename)
-        item = WardrobeItem(filename=filename, original_name=file.filename, file_path=file_path)
+        filename, image_url = await storage.upload(
+            storage.BUCKET_WARDROBE, file.filename or "item.jpg", file_bytes, file.content_type
+        )
+        item = WardrobeItem(filename=filename, original_name=file.filename, file_path=image_url)
         db.add(item)
         await db.commit()
         await db.refresh(item)
-        background_tasks.add_task(_run_tagging, item.id, file_path)
+        background_tasks.add_task(_run_tagging, item.id, image_url)
         results.append({"id": item.id, "filename": file.filename})
     return results
 
@@ -149,7 +142,7 @@ async def delete_item(item_id: int, request: Request, db: AsyncSession = Depends
     item = result.scalar_one_or_none()
     if not item:
         raise HTTPException(404, "Item not found")
-    Path(item.file_path).unlink(missing_ok=True)
+    await storage.delete(storage.BUCKET_WARDROBE, item.filename)
     await db.delete(item)
     await db.commit()
     return {"ok": True}
@@ -160,9 +153,9 @@ async def get_image(item_id: int, request: Request, db: AsyncSession = Depends(g
     _ = get_current_user(request)
     result = await db.execute(select(WardrobeItem).where(WardrobeItem.id == item_id))
     item = result.scalar_one_or_none()
-    if not item or not Path(item.file_path).exists():
+    if not item or not item.file_path:
         raise HTTPException(404, "Image not found")
-    return FileResponse(item.file_path)
+    return RedirectResponse(item.file_path)
 
 
 def _item_dict(item: WardrobeItem) -> dict:
@@ -180,5 +173,5 @@ def _item_dict(item: WardrobeItem) -> dict:
         "tagging_error": item.tagging_error,
         "original_name": item.original_name,
         "created_at": item.created_at.isoformat(),
-        "image_url": f"/wardrobe/items/{item.id}/image",
+        "image_url": item.file_path,
     }

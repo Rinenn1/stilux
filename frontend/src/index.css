@@ -231,16 +231,66 @@ button:disabled {
   margin-top: 5px;
 }
 
-.sign-out {
+.user-card {
   margin-top: 18px;
-  color: var(--text-5);
-  font-size: 12px;
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: rgba(255,255,255,0.04);
 }
 
-.sign-out:hover {
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--grad-accent);
+  color: #06120f;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-tier {
+  font-size: 11px;
+  color: var(--text-5);
+  margin-top: 1px;
+}
+
+.sign-out-btn {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: transparent;
+  color: var(--text-4);
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.sign-out-btn:hover {
+  color: var(--text-2);
+  border-color: var(--text-4);
 }
 
 .main {

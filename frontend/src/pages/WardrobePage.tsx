@@ -57,7 +57,7 @@ export default function WardrobePage() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { "image/jpeg": [], "image/png": [], "image/webp": [] },
+    accept: { "image/jpeg": [".jpg", ".jpeg"], "image/png": [".png"], "image/webp": [".webp"] },
   });
 
   const counts = useMemo(

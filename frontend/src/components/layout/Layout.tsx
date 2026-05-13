@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
-import api from "../../lib/api";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 
 const nav = [
   { to: "/chat", label: "Chat", icon: ChatIcon },
@@ -9,6 +10,20 @@ const nav = [
 ];
 
 export default function Layout() {
+  const [displayName, setDisplayName] = useState("");
+  const [initials, setInitials] = useState("?");
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      const user = data.session?.user;
+      if (!user) return;
+      const name = user.user_metadata?.full_name || user.email || "";
+      setDisplayName(name.split("@")[0]);
+      const parts = name.replace(/@.*/, "").split(/[\s.]+/);
+      setInitials(parts.map((p: string) => p[0]?.toUpperCase() || "").join("").slice(0, 2) || "?");
+    });
+  }, []);
+
   return (
     <div className="app">
       <div className="app-frame">
@@ -38,17 +53,22 @@ export default function Layout() {
             <div className="meta">3 looks ready</div>
           </div>
 
-          <a
-            href="/auth/logout"
-            className="sign-out"
-            onClick={async (event) => {
-              event.preventDefault();
-              try { await api.post("/auth/logout"); } catch {}
-              window.location.href = "/login";
-            }}
-          >
-            Sign out
-          </a>
+          <div className="user-card">
+            <div className="user-avatar">{initials}</div>
+            <div className="user-info">
+              <div className="user-name">{displayName}</div>
+              <div className="user-tier">Free</div>
+            </div>
+            <button
+              className="sign-out-btn"
+              onClick={async () => {
+                await supabase.auth.signOut();
+                window.location.href = "/login";
+              }}
+            >
+              Sign out
+            </button>
+          </div>
         </aside>
 
         <Outlet />

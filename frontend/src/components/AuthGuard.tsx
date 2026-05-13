@@ -1,22 +1,22 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import api from "../lib/api";
+import { supabase } from "../lib/supabase";
 
 export default function AuthGuard() {
   const [checking, setChecking] = useState(true);
   const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    api
-      .get("/auth/me")
-      .then(() => {
-        setAuthed(true);
-        setChecking(false);
-      })
-      .catch(() => {
-        setChecking(false);
-        // 401 interceptor in api.ts handles the redirect to /login
-      });
+    supabase.auth.getSession().then(({ data }) => {
+      setAuthed(!!data.session);
+      setChecking(false);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setAuthed(!!session);
+    });
+
+    return () => listener.subscription.unsubscribe();
   }, []);
 
   if (checking) {
@@ -27,7 +27,7 @@ export default function AuthGuard() {
     );
   }
 
-  if (!authed) return null;
+  if (!authed) return <Navigate to="/login" replace />;
 
   return <Outlet />;
 }

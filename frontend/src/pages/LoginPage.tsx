@@ -1,6 +1,13 @@
-const BACKEND_URL = import.meta.env.VITE_API_BASE_URL ?? "";
+import { supabase } from "../lib/supabase";
 
 export default function LoginPage() {
+  async function handleGoogleSignIn() {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: window.location.origin },
+    });
+  }
+
   return (
     <div className="login-screen">
       <div className="login-card">
@@ -16,10 +23,10 @@ export default function LoginPage() {
           Wardrobe-aware outfit recommendations, powered by AI.
         </p>
 
-        <a href={`${BACKEND_URL}/auth/login`} className="google-btn">
+        <button onClick={handleGoogleSignIn} className="google-btn">
           <GoogleIcon />
           Sign in with Google
-        </a>
+        </button>
 
         <p className="login-note">Access is invite-only.</p>
       </div>
