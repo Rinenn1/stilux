@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import api from "../../lib/api";
 
 const nav = [
   { to: "/chat", label: "Chat", icon: ChatIcon },
@@ -42,8 +43,8 @@ export default function Layout() {
             className="sign-out"
             onClick={async (event) => {
               event.preventDefault();
-              await fetch("/auth/logout", { method: "POST", credentials: "include" });
-              window.location.href = "/auth/login";
+              try { await api.post("/auth/logout"); } catch {}
+              window.location.href = "/login";
             }}
           >
             Sign out
